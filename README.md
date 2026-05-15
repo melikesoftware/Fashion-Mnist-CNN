@@ -74,6 +74,3 @@ Kendi görselinizle tahmin için proje köküne bir `.jpg` dosyası koyun ve `ma
 └── data/             # Otomatik indirilir (.gitignore)
 ```
 
-## Lisans
-
-Bu proje eğitim amaçlıdır; istediğiniz lisansı ekleyebilirsiniz.
