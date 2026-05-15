@@ -32,8 +32,8 @@ Fashion-MNIST veri seti üzerinde evrişimli sinir ağı (CNN) ile giyim eşyas�
 ## Kurulum
 
 ```bash
-git clone https://github.com/KULLANICI_ADINIZ/fashion-mnist-cnn.git
-cd fashion-mnist-cnn
+git clone https://github.com/melikesoftware/Fashion-Mnist-CNN.git
+cd Fashion-Mnist-CNN
 
 python -m venv .venv
 # Windows:
