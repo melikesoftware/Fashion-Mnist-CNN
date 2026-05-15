@@ -25,4 +25,4 @@ Thumbs.db
 
 # Jupyter / plots (optional local outputs)
 *.png
-!ankle_bot.jpg
+!docs/*.png

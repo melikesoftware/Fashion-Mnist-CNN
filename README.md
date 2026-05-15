@@ -64,13 +64,21 @@ Kendi görselinizle tahmin için proje köküne bir `.jpg` dosyası koyun ve `ma
 | Optimizer | Adam (lr=0.001) |
 | Son test accuracy | ~89.55% |
 
+## Eğitim sonuçları
+
+5 epoch sonunda train ve test metrikleri birlikte iyileşir; loss düşer, accuracy artar.
+
+![Train Loss vs Test Loss](docs/train_loss.png)
+
+![Train Accuracy vs Test Accuracy](docs/train_accuracy.png)
+
 ## Proje yapısı
 
 ```
 .
 ├── main.py           # Eğitim, değerlendirme ve inference
 ├── ankle_bot.jpg     # Örnek test görseli
+├── docs/             # Eğitim grafikleri
 ├── requirements.txt
 └── data/             # Otomatik indirilir (.gitignore)
 ```
-
