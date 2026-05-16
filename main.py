@@ -2,7 +2,7 @@ import torch
 
 import matplotlib.pyplot as plt
 
-
+from torch.utils.tensorboard import SummaryWriter
 from torch import nn
 from torchvision import datasets
 
@@ -96,6 +96,8 @@ optimizer=torch.optim.Adam(params=fashion_model.parameters(),lr=0.001)
 
 summary(fashion_model,input_size=[32,1,32,32])
 
+experiment_name="fashion_experiment"
+writer = SummaryWriter(log_dir=f"runs/{experiment_name}")
 
 torch.manual_seed(42)
 accuracy=MulticlassAccuracy(num_classes=len(class_names))
@@ -153,7 +155,16 @@ for epoch in range(epochs):
     print(
         f"Train loss:{total_loss} ,Train accuracy:{total_acc},Test loss:{test_loss}, Test accuracy:{test_acc}")
 
+    writer.add_scalars(main_tag="Loss", tag_scalar_dict={"train_loss": total_loss, "test_loss": test_loss},
+                       global_step=epoch)
+    writer.add_scalars(main_tag="Accuracy", tag_scalar_dict={"train_acc": total_acc, "test_acc": test_acc},
+                       global_step=epoch)
 
+
+
+writer.add_graph(fashion_model, input_to_model=torch.randn(32, 1, 32, 32))
+
+writer.close()
 epoch_range=range(epochs)
 
 plt.figure(figsize=(16,5))

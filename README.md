@@ -6,7 +6,8 @@ Fashion-MNIST veri seti üzerinde evrişimli sinir ağı (CNN) ile giyim eşyas�
 
 - Özel `FashionClassifierModel` mimarisi (2 conv bloğu + tam bağlı katman)
 - Veri artırma: `TrivialAugmentWide`, yatay çevirme
-- Eğitim / test loss ve accuracy grafikleri
+- **TensorBoard** ile epoch bazlı loss / accuracy ve model grafiği
+- Matplotlib ile eğitim grafikleri
 - Yerel görsel ile tahmin (`ankle_bot.jpg`)
 
 ## Sınıflar
@@ -54,6 +55,41 @@ python main.py
 
 Kendi görselinizle tahmin için proje köküne bir `.jpg` dosyası koyun ve `main.py` içindeki `Image.open("ankle_bot.jpg")` satırındaki dosya adını değiştirin.
 
+## Veri seti
+
+[Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) kullanılır (60.000 train + 10.000 test). Veri seti repoya yüklenmez; `python main.py` ile `data/FashionMNIST/` altına otomatik indirilir.
+
+## TensorBoard
+
+Eğitim sırasında her epoch sonunda train/test **Loss** ve **Accuracy** TensorBoard’a yazılır; eğitim bitince model grafiği de eklenir.
+
+Log klasörü: `runs/fashion_experiment/`
+
+**1.** Önce eğitimi çalıştırın (veya eğitim devam ederken):
+
+```bash
+python main.py
+```
+
+**2.** Ayrı bir terminalde TensorBoard’u başlatın:
+
+```bash
+# Windows (.venv aktifken):
+tensorboard --logdir=runs/fashion_experiment
+
+# veya tüm denemeler:
+tensorboard --logdir=runs
+```
+
+**3.** Tarayıcıda açın: [http://localhost:6006](http://localhost:6006)
+
+| Sekme | İçerik |
+|--------|--------|
+| SCALARS | `Loss/train_loss`, `Loss/test_loss`, `Accuracy/train_acc`, `Accuracy/test_acc` |
+| GRAPHS | CNN mimarisi (`writer.add_graph`) |
+
+`runs/` klasörü `.gitignore` içindedir (log dosyaları GitHub’a gitmez).
+
 ## Model özeti
 
 | Metrik | Değer |
@@ -76,9 +112,10 @@ Kendi görselinizle tahmin için proje köküne bir `.jpg` dosyası koyun ve `ma
 
 ```
 .
-├── main.py           # Eğitim, değerlendirme ve inference
+├── main.py           # Eğitim, TensorBoard, inference
 ├── ankle_bot.jpg     # Örnek test görseli
-├── docs/             # Eğitim grafikleri
+├── docs/             # Eğitim grafikleri (README)
+├── runs/             # TensorBoard logları (.gitignore)
 ├── requirements.txt
-└── data/             # Otomatik indirilir (.gitignore)
+└── data/             # FashionMNIST (.gitignore, otomatik indirilir)
 ```
